@@ -482,7 +482,7 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px
 <section class="sec spieltag" id="spieltag">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="h2"><span class="mask"><i>Ergebnisse,</i></span> <span class="mask"><i>Tabelle,</i></span><br><span class="mask"><i class="em">nächste</i></span> <span class="mask"><i class="em">Spiele.</i></span></h2>
+      <h2 class="h2"><span class="mask"><i>Ergebnisse</i></span> <span class="mask"><i>und</i></span><br><span class="mask"><i class="em">nächste</i></span> <span class="mask"><i class="em">Spiele.</i></span></h2>
       <a class="more rv" href="https://www.fussball.de">Alle Teams auf fussball.de <span>→</span></a>
     </div>
     <div class="grid">
@@ -722,7 +722,11 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px
     if(stage){var sr=stage.parentNode.getBoundingClientRect();if(sr.bottom>0&&sr.top<vh){var q=(sr.top+sr.height/2-vh/2)/(vh/2);stage.style.transform='translateY('+(q*-7-7).toFixed(1)+'%)';}}
   }
   var ticking=false;
-  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){scrub();ticking=false;});ticking=true;}},{passive:true});
+  var lastCheck=0;
+  window.addEventListener('scroll',function(){
+    var now=Date.now();if(now-lastCheck>120){lastCheck=now;var vh=window.innerHeight;targets.forEach(function(el){if(!el.classList.contains('in')&&el.getBoundingClientRect().top<vh*.92)show(el);});}
+    if(!ticking){requestAnimationFrame(function(){scrub();ticking=false;});ticking=true;}
+  },{passive:true});
   scrub();
 })();
 </script>
