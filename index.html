@@ -101,7 +101,7 @@ button{font:inherit}
 .hero .media img{transform:scale(1.04);animation:kenburns 18s ease-in-out infinite alternate}
 @keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.12)}}
 .hero .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(15,36,80,.92) 0%,rgba(15,36,80,.55) 38%,rgba(15,36,80,.05) 70%),linear-gradient(90deg,rgba(15,36,80,.45),transparent 60%)}
-.hero .wrap{position:relative;z-index:2;padding-block:120px 64px;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,.35fr);gap:32px;align-items:end}
+.hero .wrap{position:relative;z-index:2;padding-block:120px 64px;display:grid;grid-template-columns:1fr;align-items:end}
 .hero .since{font-family:var(--display);font-weight:600;font-size:18px;color:rgba(255,255,255,.85)}
 .hero h1{font-size:clamp(42px,6.2vw,96px);line-height:.95;margin-top:14px;letter-spacing:-.02em}
 .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.12em;margin-bottom:-.12em}
@@ -305,9 +305,9 @@ section.sec{padding-block:112px}
 .ms.on .y{color:var(--red)}
 .ms h3{font-size:22px;margin-top:8px}
 .ms p{color:var(--ink-2);margin-top:8px}
-.ms-img{margin-top:16px;max-width:420px;box-shadow:var(--shadow);aspect-ratio:16/10;object-fit:cover}
+.ms-img{margin-top:16px;width:100%;max-width:460px;height:auto;box-shadow:var(--shadow)}
 .stage{aspect-ratio:16/10;max-width:100%;position:relative;overflow:hidden;background:var(--navy-deep);margin-top:28px;box-shadow:var(--shadow-lift)}
-.stage img{width:100%;height:115%;object-fit:cover;will-change:transform}
+.stage img{width:100%;height:115%;object-fit:cover;object-position:center top;will-change:transform}
 @media (max-width:900px){.verein .grid{grid-template-columns:1fr;gap:40px}.verein .sticky{position:static}}
 
 /* ---------- Vorstand ---------- */
@@ -422,10 +422,6 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px
         <a class="btn btn-red" href="#kontakt">Mitglied werden</a>
         <a class="btn btn-line" href="#mannschaften">Unsere Mannschaften <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-    </div>
-    <div class="side fade d2">
-      <span class="badge"><i>Meister 2025/26</i>Aufgestiegen in die Bezirksliga</span>
-      <span class="credit">Vier Tore gegen SG Weintal, 30. Mai 2026, aufgenommen mit der Veo-Cam</span>
     </div>
   </div>
 </section>
@@ -586,15 +582,15 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px
         <h2 class="h2"><span class="mask"><i>Seit</i></span> <span class="mask"><i>1924</i></span> <span class="mask"><i>im</i></span><br><span class="mask"><i class="em">Trierer</i></span> <span class="mask"><i class="em">Süden.</i></span></h2>
         <p class="lead rv">Die DJK St. Matthias ist in Feyen zu Hause. Was 1924 begann, ist heute ein Verein mit zwei Abteilungen, eigenem Sportgelände und eigenem Vereinsheim. Bei uns spielen Kinder, die zum ersten Mal gegen einen Ball treten, und Herren, die seit zwanzig Jahren dasselbe Trikot tragen.</p>
         <div class="cta rv"><a class="btn btn-navy" href="#">Unser Vereinsheim</a><a class="btn btn-navy" href="#vorstand" style="background:var(--navy-ink)">Der Vorstand</a></div>
-        <div class="stage rv" data-parallax><img src="bilder/web/anlage-oben.jpg" width="732" height="441" alt="Die Bezirkssportanlage Trier-Feyen von oben" loading="lazy"></div>
+        <div class="stage rv" data-parallax><img src="bilder/web/platz-weit.jpg" width="1600" height="900" alt="Der Kunstrasen in Feyen beim Spiel" loading="lazy"></div>
       </div>
       <div class="tl" data-timeline>
         <div class="fill"></div>
         <div class="ms"><div class="y">1924</div><h3>Gründung im Trierer Süden</h3><p>Als DJK-Verein gegründet, mit Fußball als erster Abteilung. Der Name St. Matthias ist bis heute geblieben.</p><img class="ms-img" src="bilder/web/gruendervaeter.jpg" width="1200" height="900" alt="Die Gründerväter des Vereins" loading="lazy"></div>
-        <div class="ms"><div class="y">Feyen</div><h3>Eigenes Sportgelände und Vereinsheim</h3><p>Kunstrasen, Vereinsheim und Platz für Feste. Das Gelände an der Clara-Viebig-Straße ist das Zuhause aller Abteilungen.</p><img class="ms-img" src="bilder/web/vereinsheim-innen.jpg" width="1200" height="900" alt="Die Theke im Vereinsheim" loading="lazy"></div>
+        <div class="ms"><div class="y">Feyen</div><h3>Eigenes Sportgelände und Vereinsheim</h3><p>Kunstrasen, Vereinsheim und Platz für Feste. Das Gelände an der Clara-Viebig-Straße ist das Zuhause aller Abteilungen.</p><img class="ms-img" src="bilder/web/vereinsheim.jpg" width="1400" height="1050" alt="Das Vereinsheim in Feyen" loading="lazy"></div>
         <div class="ms"><div class="y">Handball</div><h3>Zweite Abteilung, eigener Spielbetrieb</h3><p>Die Mattheiser Handballer mit Damen, Herren und Jugend, heute mit eigener Seite und eigener Halle.</p><img class="ms-img" src="bilder/web/halle.jpg" width="1024" height="768" alt="Die neue Halle in Feyen" loading="lazy"></div>
         <div class="ms"><div class="y">Jugend</div><h3>Über zwanzig Mannschaften</h3><p>Von der Ballschule bis zur A-Jugend, Jungen und Mädchen. Die Jugend ist der größte Teil des Vereins.</p></div>
-        <div class="ms"><div class="y">2026</div><h3>Meister und Aufstieg in die Bezirksliga</h3><p>Am 17. Mai 2026 wird die Erste mit dem Sieg gegen Föhren Meister und spielt seit dieser Saison in der Bezirksliga West.</p></div>
+        <div class="ms"><div class="y">2026</div><h3>Meister und Aufstieg in die Bezirksliga</h3><p>Am 17. Mai 2026 wird die Erste mit dem Sieg gegen Föhren Meister und spielt seit dieser Saison in der Bezirksliga West.</p><img class="ms-img" src="bilder/web/aufstieg-banner.jpg" width="1400" height="788" alt="Die Mannschaft mit dem Aufstiegsbanner" loading="lazy"></div>
       </div>
     </div>
   </div>
