@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DJK St. Matthias Trier e.V. | Einmal Mattheiser, immer Mattheiser.</title>
+<meta name="description" content="Fußball und Handball im Trierer Süden, seit 1924. Entwurf der neuen Startseite.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#1C3B7D; --navy-deep:#0F2450; --navy-ink:#14192B;
+  --red:#C4251E; --red-deep:#9A1A15; --red-soft:#FF8A84;
+  --ground:#FFFFFF; --ground-2:#F3F5F9; --surface:#FFFFFF;
+  --ink:#14192B; --ink-2:#3F4A63; --ink-3:#5B6780;
+  --green:#1C9B57; --green-soft:#5DE39A; --gold:#E8B430;
+  --shadow:0 1px 2px rgba(20,25,43,.05),0 18px 40px -20px rgba(20,25,43,.22);
+  --shadow-lift:0 2px 4px rgba(20,25,43,.06),0 32px 60px -28px rgba(20,25,43,.35);
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0B1327; --ground-2:#101B36; --surface:#142248;
+    --ink:#EEF2FA; --ink-2:#C4CDE0; --ink-3:#A0ABC4;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 18px 40px -20px rgba(0,0,0,.6);
+    --shadow-lift:0 2px 4px rgba(0,0,0,.3),0 32px 60px -28px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0B1327; --ground-2:#101B36; --surface:#142248;
+  --ink:#EEF2FA; --ink-2:#C4CDE0; --ink-3:#A0ABC4;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 18px 40px -20px rgba(0,0,0,.6);
+  --shadow-lift:0 2px 4px rgba(0,0,0,.3),0 32px 60px -28px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05;font-weight:800;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+img,video{max-width:100%;display:block}
+button{font:inherit}
+.wrap{width:min(1240px,100% - 48px);margin-inline:auto}
+@media (max-width:640px){.wrap{width:min(1240px,100% - 32px)}}
+.h2{font-size:clamp(34px,4.4vw,58px);line-height:1;text-wrap:pretty}
+.h2 em{font-style:normal;color:var(--red)}
+.lead{color:var(--ink-2);font-size:18px}
+.note-small{font-size:14px;color:var(--ink-3)}
+
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:16px;text-decoration:none;padding:16px 26px;border:2px solid transparent;overflow:hidden;isolation:isolate;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:color .3s,transform .3s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;transform:translateX(-105%) skewX(-18deg);transition:transform .45s var(--ease)}
+.btn:hover::before{transform:translateX(0) skewX(-18deg) scaleX(1.3)}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{background:var(--red);color:#fff}.btn-red::before{background:var(--navy)}
+.btn-navy{background:var(--navy);color:#fff}.btn-navy::before{background:var(--red)}
+.btn-line{border-color:rgba(255,255,255,.85);color:#fff;background:transparent}.btn-line::before{background:#fff}.btn-line:hover{color:var(--navy)}
+.btn svg{width:18px;height:18px;transition:transform .3s}.btn:hover svg{transform:translateX(4px)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.progress{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:4px;width:0;background:var(--red);z-index:60}
+
+/* ---------- Spiel-Leiste + Header (hell) ---------- */
+.bar{background:var(--navy-ink);color:#fff;font-size:14px}
+.bar .wrap{display:flex;align-items:center;gap:18px;height:40px}
+.bar b{font-family:var(--display);font-weight:700;color:var(--red-soft);white-space:nowrap}
+.bar .fixture{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:rgba(255,255,255,.88)}
+.bar .cd{margin-left:auto;display:flex;gap:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar .cd span{display:inline-flex;align-items:baseline;gap:4px}
+.bar .cd b{color:#fff;font-size:15px}
+.bar .cd small{font-size:12px;color:rgba(255,255,255,.7)}
+@media (max-width:700px){.bar .cd span:nth-child(4){display:none}.bar .fixture{display:none}}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--surface);color:var(--ink);transition:box-shadow .3s}
+.top.scrolled{box-shadow:0 10px 30px -18px rgba(20,25,43,.35)}
+.top .wrap{display:flex;align-items:center;gap:26px;height:78px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:auto;height:50px;flex:none}
+.brand b{font-family:var(--display);font-weight:800;font-size:19px;line-height:1;display:block;white-space:nowrap}
+.brand small{font-size:12px;color:var(--ink-3);display:block;margin-top:3px}
+.nav{display:flex;gap:24px;margin-left:auto;font-family:var(--display);font-weight:600;font-size:16px}
+.nav a{text-decoration:none;color:var(--ink-2);position:relative;padding:6px 0}
+.nav a::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.nav a:hover{color:var(--ink)}.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.top .btn{padding:12px 20px;font-size:15px}
+.burger{display:none;margin-left:auto;background:none;border:0;color:inherit;width:44px;height:44px;cursor:pointer;padding:0}
+.burger span{display:block;height:2px;background:currentColor;margin:6px auto;width:24px;transition:transform .3s,opacity .3s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.mobile{position:fixed;inset:0;z-index:40;background:var(--navy-deep);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:32px;transform:translateY(-100%);transition:transform .55s var(--ease)}
+.mobile.open{transform:none}
+.mobile a{font-family:var(--display);font-weight:800;font-size:clamp(32px,8vw,48px);text-decoration:none;line-height:1.15;opacity:0;transform:translateX(-20px);transition:opacity .4s,transform .4s var(--ease)}
+.mobile.open a{opacity:1;transform:none}
+.mobile.open a:nth-child(2){transition-delay:.06s}.mobile.open a:nth-child(3){transition-delay:.12s}.mobile.open a:nth-child(4){transition-delay:.18s}.mobile.open a:nth-child(5){transition-delay:.24s}.mobile.open a:nth-child(6){transition-delay:.3s}
+@media (max-width:1100px){.nav,.top .btn{display:none}.burger{display:block}}
+
+/* ---------- Hero: Video trägt, Text steht unten links ---------- */
+.hero{position:relative;background:var(--navy-ink);color:#fff;overflow:hidden;isolation:isolate;min-height:min(84vh,860px);display:flex;align-items:flex-end}
+.hero .media{position:absolute;inset:0;z-index:0}
+.hero .media video,.hero .media img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero .media img{transform:scale(1.04);animation:kenburns 18s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+.hero .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(15,36,80,.92) 0%,rgba(15,36,80,.55) 38%,rgba(15,36,80,.05) 70%),linear-gradient(90deg,rgba(15,36,80,.45),transparent 60%)}
+.hero .wrap{position:relative;z-index:2;padding-block:120px 64px;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,.35fr);gap:32px;align-items:end}
+.hero .since{font-family:var(--display);font-weight:600;font-size:18px;color:rgba(255,255,255,.85)}
+.hero h1{font-size:clamp(42px,6.2vw,96px);line-height:.95;margin-top:14px;letter-spacing:-.02em}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.12em;margin-bottom:-.12em}
+.hero h1 .w i{display:inline-block;font-style:normal;transform:translateY(110%);animation:up 1s var(--ease) .2s forwards}
+.hero h1 .w:nth-child(2) i{animation-delay:.28s}.hero h1 .w:nth-child(4) i{animation-delay:.4s}.hero h1 .w:nth-child(5) i{animation-delay:.48s}
+.hero h1 .accent{color:var(--red-soft)}
+@keyframes up{to{transform:none}}
+.hero .lead{color:rgba(255,255,255,.9);margin-top:20px;font-size:clamp(17px,1.5vw,20px)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.fade{opacity:0;transform:translateY(18px);animation:fade .9s var(--ease) forwards}
+.fade.d1{animation-delay:.7s}.fade.d2{animation-delay:.85s}
+@keyframes fade{to{opacity:1;transform:none}}
+.badge{display:inline-flex;align-items:center;gap:12px;white-space:nowrap;background:rgba(20,25,43,.65);backdrop-filter:blur(6px);color:#fff;font-family:var(--display);font-weight:700;font-size:15px;padding:0 18px 0 0;clip-path:polygon(0 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+.badge i{background:var(--red);padding:11px 14px;font-style:normal}
+.hero .side{justify-self:end;text-align:right;display:grid;gap:10px;justify-items:end}
+.hero .side .credit{font-size:13px;color:rgba(255,255,255,.7)}
+.hero .sound{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;border:0;padding:10px 14px;font-size:14px;cursor:pointer;backdrop-filter:blur(6px)}
+@media (max-width:900px){.hero{min-height:0}.hero .wrap{grid-template-columns:1fr;padding-block:220px 56px}.hero .side{justify-self:start;text-align:left;justify-items:start}}
+
+/* ---------- Anzeigetafel unter dem Hero ---------- */
+.board-strip{position:relative;z-index:4;margin-top:-56px}
+.board-strip .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;background:var(--surface);box-shadow:var(--shadow-lift)}
+.bs{padding:26px 28px;display:grid;gap:6px;align-content:center}
+.bs+.bs{box-shadow:inset 1px 0 0 rgba(20,25,43,.08)}
+.bs .k{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink-3)}
+.bs .v{font-family:var(--display);font-weight:800;font-size:clamp(22px,2vw,28px);line-height:1.1}
+.bs .v small{font-weight:600;font-size:15px;color:var(--ink-2);display:block;margin-top:4px}
+.bs.match{grid-template-columns:auto 1fr;gap:18px;align-items:center}
+.bs.match .crest-img{width:auto;height:64px}
+.bs.match .crest{width:60px;height:60px;display:grid;place-items:center;font-family:var(--display);font-weight:800;color:#fff;background:var(--navy);clip-path:polygon(50% 0,100% 12%,100% 65%,50% 100%,0 65%,0 12%)}
+.bs.cta{background:var(--red);color:#fff;grid-template-columns:1fr auto;align-items:center;gap:14px}
+.bs.cta .v{font-size:22px}.bs.cta .k{color:rgba(255,255,255,.8)}
+.bs.cta a{font-family:var(--display);font-weight:700;text-decoration:underline;text-underline-offset:5px;white-space:nowrap}
+.live{display:inline-flex;align-items:center;gap:7px;color:var(--green);font-weight:700;font-size:14px}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(28,155,87,.5)}100%{box-shadow:0 0 0 12px rgba(28,155,87,0)}}
+@media (max-width:900px){.board-strip .wrap{grid-template-columns:1fr 1fr}.bs.match{grid-column:1/-1}.bs.cta{grid-column:1/-1}}
+@media (max-width:520px){.board-strip .wrap{grid-template-columns:1fr}.bs+.bs{box-shadow:inset 0 1px 0 rgba(20,25,43,.08)}}
+
+/* ---------- Sections ---------- */
+section.sec{padding-block:112px}
+.sec-head{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end;margin-bottom:48px}
+.sec-head.stack{grid-template-columns:1fr;gap:0}
+.sec-head.stack .lead{margin-top:20px}
+.sec-head.split{grid-template-columns:1fr auto;align-items:start}
+.sec-head.split>div:last-child{align-self:end}
+.sec-head .lead{margin-top:18px}
+.more{font-family:var(--display);font-weight:700;font-size:16px;color:var(--red);text-decoration:none;display:inline-flex;gap:10px;align-items:center;white-space:nowrap;padding-bottom:4px;border-bottom:3px solid transparent;transition:border-color .2s,gap .2s}
+.more:hover{border-color:var(--red);gap:16px}
+@media (max-width:700px){.sec-head{grid-template-columns:1fr}section.sec{padding-block:76px}}
+.js .rv:not(.in){opacity:0;transform:translateY(34px)}
+.rv{transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .stagger>*:not(.in){opacity:0;transform:translateY(30px)}
+.stagger>*{transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .h2 .mask{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}
+.js .h2 .mask i{display:inline-block;font-style:normal;transform:translateY(110%);transition:transform .9s var(--ease)}
+.js .h2.in .mask i{transform:none}
+.js .h2.in .mask:nth-child(2) i{transition-delay:.07s}.js .h2.in .mask:nth-child(3) i{transition-delay:.14s}.js .h2.in .mask:nth-child(4) i{transition-delay:.21s}.js .h2.in .mask:nth-child(5) i{transition-delay:.28s}.js .h2.in .mask:nth-child(6) i{transition-delay:.35s}.js .h2.in .mask:nth-child(7) i{transition-delay:.42s}
+
+/* ---------- Aktuelles: Fotos tragen die Karten ---------- */
+.news{display:grid;grid-template-columns:1.3fr 1fr;gap:24px}
+.news .col{display:grid;gap:24px}
+.card{position:relative;background:var(--surface);box-shadow:var(--shadow);text-decoration:none;color:inherit;display:grid;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.card:hover{box-shadow:var(--shadow-lift);transform:translateY(-4px)}
+.card .img{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:var(--navy)}
+.card.big .img{aspect-ratio:16/10}
+.card .img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.card:hover .img img{transform:scale(1.06)}
+.card .tag{position:absolute;left:0;top:18px;background:var(--red);color:#fff;font-family:var(--display);font-weight:700;font-size:14px;padding:8px 16px 8px 18px;clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.card .body{padding:22px 24px 26px}
+.card time{font-size:14px;color:var(--ink-3);font-weight:600}
+.card h3{font-size:clamp(20px,2vw,26px);margin-top:8px}
+.card.big h3{font-size:clamp(26px,2.8vw,38px)}
+.card p{color:var(--ink-2);margin-top:10px;font-size:16px}
+.card .arrow{position:absolute;right:20px;bottom:20px;width:40px;height:40px;background:var(--navy);color:#fff;display:grid;place-items:center;transform:translateX(10px);opacity:0;transition:transform .35s var(--ease),opacity .35s}
+.card:hover .arrow{transform:none;opacity:1}
+@media (max-width:900px){.news{grid-template-columns:1fr}}
+
+/* ---------- Highlights: Video + zwei Fotos ---------- */
+.hl{background:var(--ground-2)}
+.hl-grid{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:1fr 1fr;gap:18px}
+.hl-video{grid-row:span 2;position:relative;background:#000;overflow:hidden;box-shadow:var(--shadow-lift);aspect-ratio:16/9;max-width:100%}
+.hl-video video{width:100%;height:100%;object-fit:cover}
+.hl-video .play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(to top,rgba(15,36,80,.6),transparent 50%);cursor:pointer;border:0;padding:0;color:#fff;font:inherit;transition:opacity .4s}
+.hl-video .play span{width:84px;height:84px;display:grid;place-items:center;background:var(--red);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transition:transform .35s var(--ease)}
+.hl-video .play:hover span{transform:scale(1.08)}
+.hl-video .play b{position:absolute;left:22px;bottom:18px;font-family:var(--display);font-weight:700;font-size:18px;text-align:left}
+.hl-video .play b small{display:block;font-weight:500;font-size:14px;color:rgba(255,255,255,.8)}
+.hl-video.playing .play{opacity:0;pointer-events:none}
+.hl-photo{position:relative;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:16/9;max-width:100%}
+.hl-photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.hl-photo:hover img{transform:scale(1.06)}
+.hl-photo b{position:absolute;left:18px;bottom:14px;color:#fff;font-family:var(--display);font-weight:700;font-size:16px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+@media (max-width:900px){.hl-grid{grid-template-columns:1fr;grid-template-rows:auto}.hl-video{grid-row:auto}}
+
+/* ---------- Spieltag auf Weiß ---------- */
+.spieltag .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px}
+.board{background:var(--surface);box-shadow:var(--shadow)}
+.board header{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:var(--ground-2)}
+.board header h3{font-size:19px}
+.board header span{font-size:14px;color:var(--ink-3)}
+.tbl{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}
+.tbl th{font-family:var(--display);font-size:14px;color:var(--ink-3);text-align:left;padding:12px 22px;font-weight:600}
+.tbl td{padding:13px 22px}
+.tbl tbody tr:nth-child(odd) td{background:var(--ground-2)}
+.tbl .n{text-align:right}
+.tbl tr.us td{background:rgba(196,37,30,.1);font-weight:700}
+.tbl tr.us td:first-child{box-shadow:inset 4px 0 0 var(--red)}
+.js .tbl tbody tr{opacity:0;transform:translateX(-16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.js .board.in .tbl tbody tr{opacity:1;transform:none}
+.js .board.in .tbl tbody tr:nth-child(2){transition-delay:.08s}.js .board.in .tbl tbody tr:nth-child(3){transition-delay:.16s}.js .board.in .tbl tbody tr:nth-child(4){transition-delay:.24s}.js .board.in .tbl tbody tr:nth-child(5){transition-delay:.32s}.js .board.in .tbl tbody tr:nth-child(6){transition-delay:.4s}
+.form{padding:18px 22px 22px}
+.form .lbl{font-size:14px;color:var(--ink-2);font-weight:600;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.form svg{width:100%;height:auto;display:block;margin-top:8px;overflow:visible}
+.form .path{fill:none;stroke:var(--green);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:600;stroke-dashoffset:600}
+.js .board.in .form .path{animation:draw 1.6s var(--ease) .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.form .dot{transform:scale(0);transform-origin:center;transform-box:fill-box}
+.js .board.in .form .dot{animation:pop .5s var(--ease) forwards}
+.js .board.in .form .dot:nth-of-type(2){animation-delay:.55s}.js .board.in .form .dot:nth-of-type(3){animation-delay:.8s}.js .board.in .form .dot:nth-of-type(4){animation-delay:1.05s}.js .board.in .form .dot:nth-of-type(5){animation-delay:1.3s}.js .board.in .form .dot:nth-of-type(6){animation-delay:1.55s}
+@keyframes pop{to{transform:scale(1)}}
+.form text{font-family:var(--display);font-weight:700;font-size:13px;fill:var(--ink-2)}
+.results{display:grid}
+.res{display:grid;grid-template-columns:110px 1fr auto;gap:14px;align-items:center;padding:12px 22px;font-size:15px}
+.res:nth-child(even){background:var(--ground-2)}
+.res .t{font-family:var(--display);font-size:14px;color:var(--ink-3);font-weight:600}
+.res .sc{font-family:var(--display);font-weight:800;font-size:18px;padding:3px 10px;background:var(--ground-2);font-variant-numeric:tabular-nums;min-width:52px;text-align:center}
+.res .w{background:var(--green);color:#fff}.res .l{background:var(--red);color:#fff}
+@media (max-width:520px){.res{grid-template-columns:1fr auto}.res .t{grid-column:1/-1}}
+.note{margin-top:26px;display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-left:4px solid var(--green);background:var(--ground-2);font-size:16px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+@media (max-width:900px){.spieltag .grid{grid-template-columns:1fr}}
+
+/* ---------- Mannschaften mit Fotos ---------- */
+.teams{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:280px;gap:16px}
+.tm{position:relative;text-decoration:none;color:#fff;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;box-shadow:var(--shadow);background:var(--navy)}
+.tm.w2{grid-column:span 2}.tm.w3{grid-column:span 3}
+.tm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease)}
+.tm:hover img{transform:scale(1.06)}
+.tm::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(15,36,80,.92),rgba(15,36,80,.2) 60%,transparent)}
+.tm .k{font-size:14px;font-weight:600;color:var(--red-soft)}
+.tm h3{font-size:24px;margin-top:6px}
+.tm p{font-size:15px;color:rgba(255,255,255,.85);margin-top:6px}
+.tm .go{margin-top:12px;font-family:var(--display);font-weight:700;font-size:15px;display:inline-flex;gap:8px;align-items:center;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s var(--ease)}
+.tm:hover .go{opacity:1;transform:none}
+@media (max-width:1000px){.teams{grid-template-columns:repeat(2,1fr)}.tm.w2,.tm.w3{grid-column:span 1}.tm.w3{grid-column:span 2}}
+@media (max-width:520px){.teams{grid-template-columns:1fr;grid-auto-rows:240px}.tm.w3{grid-column:span 1}}
+
+/* ---------- Kader: Filter + Reihe zum Wischen ---------- */
+.kader-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:56px}
+.kader-block+.kader-block .kader-head{margin-top:24px}
+.kader-head h3{font-size:24px;margin-right:14px}
+.kf{font-family:var(--display);font-weight:700;font-size:14px;padding:9px 14px;background:var(--ground-2);color:var(--ink-2);border:0;cursor:pointer;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);transition:background .25s,color .25s}
+.kf:hover{background:#E4E9F2}
+.kf.on{background:var(--navy);color:#fff}
+.kader{overflow-x:auto;scroll-snap-type:x mandatory;padding-block:18px 22px;scrollbar-width:thin;margin-inline:-24px;padding-inline:24px}
+.kader .row{display:flex;gap:14px;width:max-content}
+.pl{position:relative;width:196px;flex:none;scroll-snap-align:start;background:var(--navy-deep);box-shadow:var(--shadow);overflow:hidden;color:#fff;text-decoration:none;transition:transform .45s var(--ease),box-shadow .45s,opacity .35s}
+.pl:hover{transform:translateY(-8px);box-shadow:var(--shadow-lift)}
+.pl.hide{display:none}
+.pl .ph{aspect-ratio:4/5;max-width:100%;overflow:hidden}
+.pl .ph img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1s var(--ease)}
+.pl:hover .ph img{transform:scale(1.06)}
+.pl .cap{position:absolute;left:0;right:0;bottom:0;padding:44px 14px 14px;background:linear-gradient(to top,rgba(15,36,80,.96),rgba(15,36,80,.6) 55%,transparent)}
+.pl .cap b{display:block;font-family:var(--display);font-weight:800;font-size:17px;line-height:1.1}
+.pl .cap span{display:block;font-size:13px;color:rgba(255,255,255,.8);margin-top:3px}
+.pl .stripe{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--red);transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease)}
+.pl:hover .stripe{transform:none}
+.js .kader.stagger .pl:not(.in){opacity:0;transform:translateY(24px)}
+@media (max-width:520px){.pl{width:160px}}
+
+
+/* ---------- Instagram: echte Kacheln, Reihe zum Wischen ---------- */
+.ig{background:var(--ground-2);overflow:hidden}
+.ig .sec-head{margin-bottom:36px}
+.sync{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);padding:8px 14px;background:var(--surface);box-shadow:var(--shadow);font-weight:600}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.6s ease-out infinite}
+.lane{overflow-x:auto;scroll-snap-type:x mandatory;padding-block:8px 22px;scrollbar-width:thin}
+.lane .track{display:flex;gap:18px;width:max-content;padding-inline:max(24px,calc((100vw - 1240px)/2))}
+.post{width:300px;flex:none;scroll-snap-align:start;background:var(--surface);box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:transform .4s var(--ease),box-shadow .4s}
+.post:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+.post .pic{aspect-ratio:4/5;max-width:100%;position:relative;overflow:hidden;background:var(--navy)}
+.post .pic img{width:100%;height:100%;object-fit:cover}
+.post .pic svg{position:absolute;left:12px;top:12px;width:22px;height:22px;filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))}
+.post .txt{padding:14px 16px 16px;font-size:15px;line-height:1.45}
+.post .txt time{display:block;font-size:14px;color:var(--ink-3);font-weight:600;margin-bottom:4px}
+
+/* ---------- Verein / Timeline ---------- */
+.verein .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.verein .sticky{position:sticky;top:120px}
+.verein .lead{margin-top:18px}
+.verein .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.tl{position:relative;padding-left:40px}
+.tl::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:2px;background:rgba(20,25,43,.12)}
+.tl .fill{position:absolute;left:11px;top:0;width:2px;height:0;background:var(--red)}
+.ms{position:relative;padding-bottom:48px}
+.ms:last-child{padding-bottom:0}
+.ms::before{content:"";position:absolute;left:-36px;top:8px;width:16px;height:16px;background:var(--ground);box-shadow:inset 0 0 0 3px rgba(20,25,43,.18);transform:rotate(45deg);transition:box-shadow .3s,background .3s}
+.ms.on::before{box-shadow:inset 0 0 0 3px var(--red);background:var(--red)}
+.ms .y{font-family:var(--display);font-weight:800;font-size:clamp(34px,4vw,50px);line-height:1;color:var(--navy);transition:color .3s}
+.ms.on .y{color:var(--red)}
+.ms h3{font-size:22px;margin-top:8px}
+.ms p{color:var(--ink-2);margin-top:8px}
+.ms-img{margin-top:16px;max-width:420px;box-shadow:var(--shadow);aspect-ratio:16/10;object-fit:cover}
+.stage{aspect-ratio:16/10;max-width:100%;position:relative;overflow:hidden;background:var(--navy-deep);margin-top:28px;box-shadow:var(--shadow-lift)}
+.stage img{width:100%;height:115%;object-fit:cover;will-change:transform}
+@media (max-width:900px){.verein .grid{grid-template-columns:1fr;gap:40px}.verein .sticky{position:static}}
+
+/* ---------- Vorstand ---------- */
+.board-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.person{background:var(--surface);box-shadow:var(--shadow);padding:22px;display:flex;gap:16px;align-items:center;transition:transform .4s var(--ease),box-shadow .4s}
+.person:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+.person img.av{object-fit:cover;object-position:center 28%}
+.person .av{width:56px;height:56px;flex:none;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:18px;clip-path:polygon(50% 0,100% 12%,100% 65%,50% 100%,0 65%,0 12%)}
+.person b{display:block;font-family:var(--display);font-weight:700;font-size:17px}
+.person span{font-size:15px;color:var(--ink-3)}
+@media (max-width:900px){.board-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.board-grid{grid-template-columns:1fr}}
+
+/* ---------- Sponsoren ---------- */
+.sponsors{background:var(--ground-2);padding-block:96px}
+.sponsors .sec-head{margin-bottom:40px}
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.logo{display:grid;place-items:center;min-height:130px;padding:24px 28px;background:#fff;box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s}
+.logo img{max-height:72px;width:auto;max-width:100%;object-fit:contain}
+.logo:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+.sponsors .cta{margin-top:40px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+@media (max-width:900px){.logos{grid-template-columns:repeat(2,1fr)}.sponsors .cta{grid-template-columns:1fr}}
+
+/* ---------- Kontakt ---------- */
+.kontakt{background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
+.kontakt .bgimg{position:absolute;inset:0;z-index:0;opacity:.18}
+.kontakt .bgimg img{width:100%;height:100%;object-fit:cover}
+.kontakt .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.kontakt .h2 em{color:var(--red-soft)}
+.kontakt .lead{color:rgba(255,255,255,.88);margin-top:18px}
+.ways{display:grid;gap:14px;margin-top:32px}
+.way{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;padding:18px 20px;background:rgba(255,255,255,.08);text-decoration:none;color:inherit;transition:transform .3s var(--ease),background .3s}
+.way:hover{transform:translateX(6px);background:rgba(255,255,255,.14)}
+.way b{font-family:var(--display);font-weight:700;font-size:15px;color:var(--red-soft);display:block}
+.way span{display:block;margin-top:2px;font-size:16px}
+.way svg{width:22px;height:22px;margin-top:4px}
+.formbox{background:#fff;color:#14192B;padding:32px;box-shadow:var(--shadow-lift)}
+.formbox h3{font-size:24px}
+.fld{display:grid;gap:6px;margin-top:16px}
+.fld label{font-size:14px;font-weight:700;color:#3F4A63}
+.fld input,.fld select,.fld textarea{font:inherit;font-size:16px;padding:12px 14px;border:0;background:#EEF1F7;color:#14192B;box-shadow:inset 0 0 0 2px transparent;transition:box-shadow .2s,background .2s;width:100%}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;box-shadow:inset 0 0 0 2px var(--navy);background:#fff}
+.fld textarea{min-height:110px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#3F4A63;margin-top:16px}
+.consent input{margin-top:3px}
+.formbox .btn{margin-top:20px;width:100%;justify-content:center;cursor:pointer}
+.formbox .hint{font-size:14px;color:#5B6780;margin-top:12px}
+@media (max-width:900px){.kontakt .wrap{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+
+footer{background:var(--navy-ink);color:rgba(255,255,255,.8);padding-block:56px 36px;font-size:15px}
+footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
+footer h4{font-family:var(--display);font-weight:700;font-size:16px;color:#fff;margin:0 0 14px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer a{text-decoration:none;transition:color .2s}footer a:hover{color:var(--red-soft)}
+footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:40px;padding-top:20px;box-shadow:0 -1px 0 rgba(255,255,255,.12);font-size:14px;color:rgba(255,255,255,.75)}
+@media (max-width:900px){footer .cols{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){footer .cols{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important}
+  .js .rv:not(.in),.js .stagger>*:not(.in){opacity:1;transform:none}
+  .js .h2 .mask i,.hero h1 .w i{transform:none}
+  .fade{opacity:1;transform:none}
+  .form .path{stroke-dashoffset:0}.form .dot{transform:scale(1)}
+  .js .tbl tbody tr{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="bar">
+  <div class="wrap">
+    <b>Nächstes Spiel</b>
+    <span class="fixture">DJK St. Matthias gegen SV Tawern, Samstag 19.09., 15:30 Uhr, Kunstrasen Feyen</span>
+    <div class="cd" id="cd" aria-label="Countdown zum Anstoß"><span><b>0</b><small>Tage</small></span><span><b>00</b><small>Std.</small></span><span><b>00</b><small>Min.</small></span><span><b>00</b><small>Sek.</small></span></div>
+  </div>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <img src="bilder/web/wappen.png" width="147" height="192" alt="Wappen DJK St. Matthias Trier">
+      <span><b>DJK St. Matthias</b><small>Trier e.V., seit 1924</small></span>
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#aktuelles">Aktuelles</a><a href="#highlights">Highlights</a><a href="#spieltag">Spieltag</a><a href="#mannschaften">Mannschaften</a><a href="#verein">Verein</a><a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="btn btn-red" href="#kontakt">Mitglied werden</a>
+    <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="mobile"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile" id="mobile" aria-label="Mobile Navigation">
+  <a href="#aktuelles">Aktuelles</a><a href="#highlights">Highlights</a><a href="#spieltag">Spieltag</a><a href="#mannschaften">Mannschaften</a><a href="#verein">Verein</a><a href="#kontakt">Kontakt</a>
+</nav>
+
+<section class="hero">
+  <div class="media" aria-hidden="true">
+    <video id="herovideo" autoplay muted loop playsinline poster="bilder/web/hero-poster.jpg" preload="auto">
+      <source src="videos/tore-weintal_720.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="veil"></div>
+  <div class="wrap">
+    <div>
+      <p class="since fade">Sportverein im Trierer Süden, seit 1924</p>
+      <h1 aria-label="Einmal Mattheiser, immer Mattheiser."><span class="w"><i>Einmal</i></span> <span class="w"><i>Mattheiser,</i></span><br><span class="w"><i class="accent">immer</i></span> <span class="w"><i class="accent">Mattheiser.</i></span></h1>
+      <p class="lead fade d1">Fußball und Handball im Trierer Süden. Von den Bambinis bis zu den Alten Herren.</p>
+      <div class="cta fade d2">
+        <a class="btn btn-red" href="#kontakt">Mitglied werden</a>
+        <a class="btn btn-line" href="#mannschaften">Unsere Mannschaften <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+    <div class="side fade d2">
+      <span class="badge"><i>Meister 2025/26</i>Aufgestiegen in die Bezirksliga</span>
+      <span class="credit">Vier Tore gegen SG Weintal, 30. Mai 2026, aufgenommen mit der Veo-Cam</span>
+    </div>
+  </div>
+</section>
+
+<div class="board-strip">
+  <div class="wrap stagger">
+    <div class="bs match"><img class="crest-img" src="bilder/web/wappen.png" width="147" height="192" alt=""><div><div class="k">Nächstes Heimspiel <span class="live"><i></i>Live</span></div><div class="v">DJK St. Matthias gegen SV Tawern<small>Samstag, 19. September, 15:30 Uhr, Kunstrasen Feyen</small></div></div></div>
+    <div class="bs"><div class="k">Bezirksliga West</div><div class="v">3. Platz<small>11 Punkte nach 6 Spielen</small></div></div>
+    <div class="bs cta"><div><div class="k">Neu dabei?</div><div class="v">Probetraining</div></div><a href="#kontakt">Anfragen</a></div>
+  </div>
+</div>
+
+<section class="sec" id="aktuelles">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2"><span class="mask"><i>Was</i></span> <span class="mask"><i>bei</i></span> <span class="mask"><i>uns</i></span> <span class="mask"><i>gerade</i></span> <span class="mask"><i class="em">läuft.</i></span></h2>
+      <a class="more rv" href="#">Alle Beiträge <span>→</span></a>
+    </div>
+    <div class="news stagger">
+      <a class="card big" href="#">
+        <div class="img"><img src="bilder/web/aufstieg-banner.jpg" width="1400" height="788" alt="Die Mannschaft feiert mit dem Banner Mattheis ist Bezirksliga"><span class="tag">1. Mannschaft</span></div>
+        <div class="body"><time>09.08.2026</time><h3>Auftakt in der Bezirksliga gegen den SV Tawern</h3><p>Nach dem Aufstieg im Mai startet die Erste in ihre neue Liga. Anpfiff ist um 15:30 Uhr auf dem Kunstrasen in Feyen.</p></div>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <div class="col">
+        <a class="card" href="#">
+          <div class="img"><img src="bilder/web/spieler-fans.jpg" width="1200" height="675" alt="Spieler feiern mit den Fans am Zaun" loading="lazy"><span class="tag">Jugend</span></div>
+          <div class="body"><time>03.07.2026</time><h3>Tauschbörse für die WM-Sticker im Vereinshaus</h3><p>Doppelte tauschen, Album vervollständigen, Freunde treffen. Für Groß und Klein, ab 16:30 Uhr.</p></div>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="card" href="#">
+          <div class="img"><img src="bilder/web/vereinsheim.jpg" width="1400" height="1050" alt="Das Vereinsheim in Feyen" loading="lazy"><span class="tag">Verein</span></div>
+          <div class="body"><time>20.06.2026</time><h3>Dauerkarten für die Saison 2026/27</h3><p>Alle Heimspiele mit einem Ticket. Ab sofort im Vereinsheim erhältlich.</p></div>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec hl" id="highlights">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div><h2 class="h2"><span class="mask"><i>Highlights</i></span> <span class="mask"><i>aus</i></span> <span class="mask"><i>der</i></span> <span class="mask"><i class="em">Veo-Cam.</i></span></h2><p class="lead rv">Jedes Heimspiel wird aufgezeichnet. Tore, Paraden und die Szenen, über die am Montag alle reden.</p></div>
+      <a class="more rv" href="https://app.veo.co/clubs/djk-st-matthias-trier/">Alle Spiele bei Veo <span>→</span></a>
+    </div>
+    <div class="hl-grid stagger">
+      <div class="hl-video" id="hlvideo">
+        <video poster="bilder/web/hero-poster.jpg" preload="metadata" playsinline>
+          <source src="videos/tore-2025-26_1080.mp4" type="video/mp4">
+        </video>
+        <button class="play" type="button" aria-label="Clip abspielen"><span><svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><b>Fünf Tore, fünf Spiele<small>Weintal, Föhren, Kanzem, FLRK, VfL Trier. Saison 2025/26</small></b></button>
+      </div>
+      <div class="hl-photo"><img src="bilder/web/sektdusche.jpg" width="1200" height="675" alt="Sektdusche nach dem Aufstieg" loading="lazy"><b>Sektdusche nach dem Schlusspfiff</b></div>
+      <div class="hl-photo"><img src="bilder/web/jubel-arme.jpg" width="1400" height="788" alt="Spieler jubeln mit ausgebreiteten Armen" loading="lazy"><b>Meister, 17. Mai 2026</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec spieltag" id="spieltag">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2"><span class="mask"><i>Ergebnisse,</i></span> <span class="mask"><i>Tabelle,</i></span><br><span class="mask"><i class="em">nächste</i></span> <span class="mask"><i class="em">Spiele.</i></span></h2>
+      <a class="more rv" href="https://www.fussball.de">Alle Teams auf fussball.de <span>→</span></a>
+    </div>
+    <div class="grid">
+      <div class="board rv" data-board>
+        <header><h3>Letzte Spiele</h3><span class="live"><i></i>Live-Daten</span></header>
+        <div class="form">
+          <div class="lbl"><span>Formkurve der Ersten, letzte sechs Spiele</span><span>3 Siege, 2 Unentschieden, 1 Niederlage</span></div>
+          <svg viewBox="0 0 520 110" aria-hidden="true">
+            <line x1="0" y1="55" x2="520" y2="55" stroke="rgba(20,25,43,.12)" stroke-dasharray="4 6"/>
+            <path class="path" d="M20 30 L116 30 L212 55 L308 85 L404 30 L500 55"/>
+            <circle class="dot" cx="20" cy="30" r="7" fill="#1C9B57"/><circle class="dot" cx="116" cy="30" r="7" fill="#1C9B57"/><circle class="dot" cx="212" cy="55" r="7" fill="#E8B430"/><circle class="dot" cx="308" cy="85" r="7" fill="#C4251E"/><circle class="dot" cx="404" cy="30" r="7" fill="#1C9B57"/><circle class="dot" cx="500" cy="55" r="7" fill="#E8B430"/>
+            <text x="20" y="104" text-anchor="middle">S</text><text x="116" y="104" text-anchor="middle">S</text><text x="212" y="104" text-anchor="middle">U</text><text x="308" y="104" text-anchor="middle">N</text><text x="404" y="104" text-anchor="middle">S</text><text x="500" y="104" text-anchor="middle">U</text>
+          </svg>
+        </div>
+        <div class="results" aria-label="Letzte Ergebnisse">
+          <div class="res"><span class="t">Herren I</span><span>DJK St. Matthias gegen SV Wittlich</span><span class="sc l">1:3</span></div>
+          <div class="res"><span class="t">Herren II</span><span>DJK St. Matthias II gegen SV Fisch</span><span class="sc">2:2</span></div>
+          <div class="res"><span class="t">Herren I</span><span>DJK St. Matthias gegen FSV Salmrohr</span><span class="sc l">0:10</span></div>
+          <div class="res"><span class="t">Herren II</span><span>DJK St. Matthias II gegen SG Wincheringen</span><span class="sc l">3:5</span></div>
+          <div class="res"><span class="t">Herren I</span><span>DJK St. Matthias gegen SV Trier-Irsch</span><span class="sc">1:1</span></div>
+          <div class="res"><span class="t">Herren III</span><span>DJK St. Matthias III gegen FSV Kürenz</span><span class="sc w">5:2</span></div>
+        </div>
+      </div>
+      <div class="board rv" data-board>
+        <header><h3>Tabelle Bezirksliga West</h3><span>6. Spieltag</span></header>
+        <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr><th>Platz</th><th>Verein</th><th class="n">Sp.</th><th class="n">Tore</th><th class="n">Pkt.</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>FSV Salmrohr</td><td class="n">6</td><td class="n">24:4</td><td class="n">16</td></tr>
+            <tr><td>2</td><td>SV Wittlich</td><td class="n">6</td><td class="n">14:7</td><td class="n">13</td></tr>
+            <tr class="us"><td>3</td><td>DJK St. Matthias Trier</td><td class="n">6</td><td class="n">9:17</td><td class="n">11</td></tr>
+            <tr><td>4</td><td>SV Tawern</td><td class="n">6</td><td class="n">11:10</td><td class="n">10</td></tr>
+            <tr><td>5</td><td>SG Saartal</td><td class="n">6</td><td class="n">9:11</td><td class="n">8</td></tr>
+            <tr><td>6</td><td>SV Trier-Irsch</td><td class="n">6</td><td class="n">8:12</td><td class="n">7</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <p class="note rv"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C9B57" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg><span><b>So kommen die Daten auf die Seite.</b> Countdown, Paarung, Formkurve und Tabelle liest die Seite im Livebetrieb aus dem offiziellen fussball.de-Vereinswidget des DFB. Nichts davon wird von Hand gepflegt. Die Ergebnisse stammen aus den Instagram-Spieltagsgrafiken, Tabelle und Platzierung sind Beispiele.</span></p>
+  </div>
+</section>
+
+<section class="sec" id="mannschaften">
+  <div class="wrap">
+    <div class="sec-head stack">
+      <h2 class="h2"><span class="mask"><i>Für</i></span> <span class="mask"><i>jedes</i></span> <span class="mask"><i>Alter</i></span><br><span class="mask"><i class="em">eine</i></span> <span class="mask"><i class="em">Mannschaft.</i></span></h2>
+      <p class="lead rv">Über zwanzig Mannschaften im Trierer Süden. Such dir das passende Alter aus, den Rest klären wir beim ersten Training.</p>
+    </div>
+    <div class="teams stagger">
+      <a class="tm w3" href="#"><img src="bilder/web/team-herren-1.jpg" width="1400" height="788" alt="Mannschaftsfoto Herren I" loading="lazy"><span class="k">Bezirksliga West</span><h3>Herren I</h3><p>Meister 2025/26, seit dieser Saison eine Liga höher.</p><span class="go">Zur Mannschaft →</span></a>
+      <a class="tm w3" href="#"><img src="bilder/web/team-herren-2.jpg" width="1400" height="788" alt="Mannschaftsfoto Herren II" loading="lazy"><span class="k">Kreisliga B</span><h3>Herren II und III</h3><p>Zweite und Dritte, dazu die Alten Herren.</p><span class="go">Zur Mannschaft →</span></a>
+      <a class="tm w2" href="#"><img src="bilder/web/umarmung-2.jpg" width="1200" height="675" alt="Zwei Spieler umarmen sich" loading="lazy"><span class="k">A- bis F-Jugend</span><h3>Jugend</h3><p>Bambinis, Ballschule und alle Jahrgänge.</p><span class="go">Zur Jugend →</span></a>
+      <a class="tm w2" href="#"><img src="bilder/web/torwart-dusche.jpg" width="1200" height="675" alt="Torwart bekommt eine Sektdusche" loading="lazy"><span class="k">B bis E</span><h3>Mädchen</h3><p>Vier Mädchenteams mit eigenem Spielbetrieb.</p><span class="go">Zu den Mädchen →</span></a>
+      <a class="tm w2" href="https://mattheiser-handball.de"><img src="bilder/web/umarmung.jpg" width="1200" height="675" alt="Spieler und Trainer umarmen sich" loading="lazy"><span class="k">Eigene Abteilung</span><h3>Handball</h3><p>Damen, Herren und Jugend. Eigene Halle, eigene Seite.</p><span class="go">mattheiser-handball.de →</span></a>
+    </div>
+    <div class="kader-block" data-kader="m1">
+    <div class="kader-head rv"><h3>Kader Herren I</h3><button class="kf on" type="button" data-f="alle">Alle</button><button class="kf" type="button" data-f="Torwart">Torwart 2</button><button class="kf" type="button" data-f="Abwehr">Abwehr 4</button><button class="kf" type="button" data-f="Mittelfeld">Mittelfeld 12</button><button class="kf" type="button" data-f="Angriff">Angriff 5</button><button class="kf" type="button" data-f="Trainer">Trainerteam 2</button></div>
+    <div class="kader stagger" aria-label="Spieler der ersten Mannschaft"><div class="row"><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/ahmed-boussi-212659"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/ahmed-boussi-212659.jpg" width="480" height="600" alt="Ahmed Boussi" loading="lazy"></div><div class="cap"><b>Ahmed Boussi</b><span>Angriff</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/henry-jelen-2271159"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/henry-jelen-2271159.jpg" width="480" height="600" alt="Henry Jelen" loading="lazy"></div><div class="cap"><b>Henry Jelen</b><span>Angriff</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/josip-komso-1681881"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/josip-komso-1681881.jpg" width="480" height="600" alt="Josip Komso" loading="lazy"></div><div class="cap"><b>Josip Komso</b><span>Angriff</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/levin-steffes-2334570"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/levin-steffes-2334570.jpg" width="480" height="600" alt="Levin Steffes" loading="lazy"></div><div class="cap"><b>Levin Steffes</b><span>Angriff</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/paul-wege-1811631"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/paul-wege-1811631.jpg" width="480" height="600" alt="Paul Wege" loading="lazy"></div><div class="cap"><b>Paul Wege</b><span>Angriff</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/guener-agirdogan-637863"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/guener-agirdogan-637863.jpg" width="480" height="600" alt="Guener Agirdogan" loading="lazy"></div><div class="cap"><b>Guener Agirdogan</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/hussein-berjawi-739988"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/hussein-berjawi-739988.jpg" width="480" height="600" alt="Hussein Berjawi" loading="lazy"></div><div class="cap"><b>Hussein Berjawi</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/dennis-feilen-1826406"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/dennis-feilen-1826406.jpg" width="480" height="600" alt="Dennis Feilen" loading="lazy"></div><div class="cap"><b>Dennis Feilen</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/yannic-heider-753286"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/yannic-heider-753286.jpg" width="480" height="600" alt="Yannic Heider" loading="lazy"></div><div class="cap"><b>Yannic Heider</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/mohamed-khalife-1276956"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/mohamed-khalife-1276956.jpg" width="480" height="600" alt="Mohamed Khalife" loading="lazy"></div><div class="cap"><b>Mohamed Khalife</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/leon-kraewer-1688155"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/leon-kraewer-1688155.jpg" width="480" height="600" alt="Leon Kraewer" loading="lazy"></div><div class="cap"><b>Leon Kraewer</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/filip-laugsch-1994524"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/filip-laugsch-1994524.jpg" width="480" height="600" alt="Filip Laugsch" loading="lazy"></div><div class="cap"><b>Filip Laugsch</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/dreni-mehani-230804"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/dreni-mehani-230804.jpg" width="480" height="600" alt="Dreni Mehani" loading="lazy"></div><div class="cap"><b>Dreni Mehani</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/pablo-mueller-1703912"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/pablo-mueller-1703912.jpg" width="480" height="600" alt="Pablo Mueller" loading="lazy"></div><div class="cap"><b>Pablo Mueller</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/kasym-nazarov-2496290"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/kasym-nazarov-2496290.jpg" width="480" height="600" alt="Kasym Nazarov" loading="lazy"></div><div class="cap"><b>Kasym Nazarov</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/ben-pies-1726767"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/ben-pies-1726767.jpg" width="480" height="600" alt="Ben Pies" loading="lazy"></div><div class="cap"><b>Ben Pies</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/burak-tepe-654301"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/burak-tepe-654301.jpg" width="480" height="600" alt="Burak Tepe" loading="lazy"></div><div class="cap"><b>Burak Tepe</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/julius-barbion-2441169"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/julius-barbion-2441169.jpg" width="480" height="600" alt="Julius Barbion" loading="lazy"></div><div class="cap"><b>Julius Barbion</b><span>Abwehr</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/fabio-hildebrand-833423"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/fabio-hildebrand-833423.jpg" width="480" height="600" alt="Fabio Hildebrand" loading="lazy"></div><div class="cap"><b>Fabio Hildebrand</b><span>Abwehr</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/yannick-schwaab-942158"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/yannick-schwaab-942158.jpg" width="480" height="600" alt="Yannick Schwaab" loading="lazy"></div><div class="cap"><b>Yannick Schwaab</b><span>Abwehr</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/malek-weisheit-763844"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/malek-weisheit-763844.jpg" width="480" height="600" alt="Malek Weisheit" loading="lazy"></div><div class="cap"><b>Malek Weisheit</b><span>Abwehr</span></div></a><a class="pl" data-pos="Torwart" href="https://www.fupa.net/player/rafael-dalinger-236942"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/rafael-dalinger-236942.jpg" width="480" height="600" alt="Rafael Dalinger" loading="lazy"></div><div class="cap"><b>Rafael Dalinger</b><span>Torwart</span></div></a><a class="pl" data-pos="Torwart" href="https://www.fupa.net/player/olivier-less-2349280"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/olivier-less-2349280.jpg" width="480" height="600" alt="Olivier Less" loading="lazy"></div><div class="cap"><b>Olivier Less</b><span>Torwart</span></div></a><a class="pl" data-pos="Trainer" href="https://www.fupa.net/player/nv-jan-mayer-975903"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/nv-jan-mayer-975903.jpg" width="480" height="600" alt="Nv Jan Mayer" loading="lazy"></div><div class="cap"><b>Nv Jan Mayer</b><span>Trainerteam</span></div></a><a class="pl" data-pos="Trainer" href="https://www.fupa.net/player/marc-pasucha-232954"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/marc-pasucha-232954.jpg" width="480" height="600" alt="Marc Pasucha" loading="lazy"></div><div class="cap"><b>Marc Pasucha</b><span>Trainerteam</span></div></a></div></div>
+    </div>
+    <div class="kader-block" data-kader="m2">
+    <div class="kader-head rv"><h3>Kader Herren II</h3><button class="kf on" type="button" data-f="alle">Alle</button><button class="kf" type="button" data-f="Torwart">Torwart 4</button><button class="kf" type="button" data-f="Abwehr">Abwehr 7</button><button class="kf" type="button" data-f="Mittelfeld">Mittelfeld 13</button><button class="kf" type="button" data-f="Angriff">Angriff 6</button><button class="kf" type="button" data-f="Trainer">Trainerteam 3</button></div>
+    <div class="kader stagger" aria-label="Spieler der zweiten Mannschaft"><div class="row"><a class="pl" data-pos="Torwart" href="https://www.fupa.net/player/kevin-lellinger-1230497"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/kevin-lellinger-1230497.jpg" width="480" height="600" alt="Kevin Lellinger" loading="lazy"></div><div class="cap"><b>Kevin Lellinger</b><span>Torwart</span></div></a><a class="pl" data-pos="Torwart" href="https://www.fupa.net/player/marc-pasucha-232954"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/marc-pasucha-232954.jpg" width="480" height="600" alt="Marc Pasucha" loading="lazy"></div><div class="cap"><b>Marc Pasucha</b><span>Torwart</span></div></a><a class="pl" data-pos="Torwart" href="https://www.fupa.net/player/olivier-less-2349280"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/olivier-less-2349280.jpg" width="480" height="600" alt="Olivier Less" loading="lazy"></div><div class="cap"><b>Olivier Less</b><span>Torwart</span></div></a><a class="pl" data-pos="Torwart" href="https://www.fupa.net/player/sam-brand-1948059"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/sam-brand-1948059.jpg" width="480" height="600" alt="Sam Brand" loading="lazy"></div><div class="cap"><b>Sam Brand</b><span>Torwart</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/fabio-hildebrand-833423"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/fabio-hildebrand-833423.jpg" width="480" height="600" alt="Fabio Hildebrand" loading="lazy"></div><div class="cap"><b>Fabio Hildebrand</b><span>Abwehr</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/lars-moeller-865639"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/lars-moeller-865639.jpg" width="480" height="600" alt="Lars Moeller" loading="lazy"></div><div class="cap"><b>Lars Moeller</b><span>Abwehr</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/malek-weisheit-763844"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/malek-weisheit-763844.jpg" width="480" height="600" alt="Malek Weisheit" loading="lazy"></div><div class="cap"><b>Malek Weisheit</b><span>Abwehr</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/marius-weidert-914833"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/marius-weidert-914833.jpg" width="480" height="600" alt="Marius Weidert" loading="lazy"></div><div class="cap"><b>Marius Weidert</b><span>Abwehr</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/mathis-weil-2334575"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/mathis-weil-2334575.jpg" width="480" height="600" alt="Mathis Weil" loading="lazy"></div><div class="cap"><b>Mathis Weil</b><span>Abwehr</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/mike-leese-670014"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/mike-leese-670014.jpg" width="480" height="600" alt="Mike Leese" loading="lazy"></div><div class="cap"><b>Mike Leese</b><span>Abwehr</span></div></a><a class="pl" data-pos="Abwehr" href="https://www.fupa.net/player/yannick-schwaab-942158"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/yannick-schwaab-942158.jpg" width="480" height="600" alt="Yannick Schwaab" loading="lazy"></div><div class="cap"><b>Yannick Schwaab</b><span>Abwehr</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/dennis-feilen-1826406"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/dennis-feilen-1826406.jpg" width="480" height="600" alt="Dennis Feilen" loading="lazy"></div><div class="cap"><b>Dennis Feilen</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/dreni-mehani-230804"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/dreni-mehani-230804.jpg" width="480" height="600" alt="Dreni Mehani" loading="lazy"></div><div class="cap"><b>Dreni Mehani</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/filip-laugsch-1994524"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/filip-laugsch-1994524.jpg" width="480" height="600" alt="Filip Laugsch" loading="lazy"></div><div class="cap"><b>Filip Laugsch</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/guener-agirdogan-637863"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/guener-agirdogan-637863.jpg" width="480" height="600" alt="Guener Agirdogan" loading="lazy"></div><div class="cap"><b>Guener Agirdogan</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/hussein-berjawi-739988"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/hussein-berjawi-739988.jpg" width="480" height="600" alt="Hussein Berjawi" loading="lazy"></div><div class="cap"><b>Hussein Berjawi</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/hussein-mohssen-467222"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/hussein-mohssen-467222.jpg" width="480" height="600" alt="Hussein Mohssen" loading="lazy"></div><div class="cap"><b>Hussein Mohssen</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/kingsolomon-nwodo-2595372"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/kingsolomon-nwodo-2595372.jpg" width="480" height="600" alt="Kingsolomon Nwodo" loading="lazy"></div><div class="cap"><b>Kingsolomon Nwodo</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/leon-kraewer-1688155"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/leon-kraewer-1688155.jpg" width="480" height="600" alt="Leon Kraewer" loading="lazy"></div><div class="cap"><b>Leon Kraewer</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/leonardo-buchta-1663071"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/leonardo-buchta-1663071.jpg" width="480" height="600" alt="Leonardo Buchta" loading="lazy"></div><div class="cap"><b>Leonardo Buchta</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/steven-hubig-804544"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/steven-hubig-804544.jpg" width="480" height="600" alt="Steven Hubig" loading="lazy"></div><div class="cap"><b>Steven Hubig</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/tarek-conrad-468820"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/tarek-conrad-468820.jpg" width="480" height="600" alt="Tarek Conrad" loading="lazy"></div><div class="cap"><b>Tarek Conrad</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/till-gierens-1598107"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/till-gierens-1598107.jpg" width="480" height="600" alt="Till Gierens" loading="lazy"></div><div class="cap"><b>Till Gierens</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Mittelfeld" href="https://www.fupa.net/player/yannic-heider-753286"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/yannic-heider-753286.jpg" width="480" height="600" alt="Yannic Heider" loading="lazy"></div><div class="cap"><b>Yannic Heider</b><span>Mittelfeld</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/ayman-hamada-2033543"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/ayman-hamada-2033543.jpg" width="480" height="600" alt="Ayman Hamada" loading="lazy"></div><div class="cap"><b>Ayman Hamada</b><span>Angriff</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/hassan-mohssen-233326"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/hassan-mohssen-233326.jpg" width="480" height="600" alt="Hassan Mohssen" loading="lazy"></div><div class="cap"><b>Hassan Mohssen</b><span>Angriff</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/levin-steffes-2334570"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/levin-steffes-2334570.jpg" width="480" height="600" alt="Levin Steffes" loading="lazy"></div><div class="cap"><b>Levin Steffes</b><span>Angriff</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/maurice-marx-969193"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/maurice-marx-969193.jpg" width="480" height="600" alt="Maurice Marx" loading="lazy"></div><div class="cap"><b>Maurice Marx</b><span>Angriff</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/paul-wege-1811631"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/paul-wege-1811631.jpg" width="480" height="600" alt="Paul Wege" loading="lazy"></div><div class="cap"><b>Paul Wege</b><span>Angriff</span></div></a><a class="pl" data-pos="Angriff" href="https://www.fupa.net/player/sascha-becker-2036022"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/sascha-becker-2036022.jpg" width="480" height="600" alt="Sascha Becker" loading="lazy"></div><div class="cap"><b>Sascha Becker</b><span>Angriff</span></div></a><a class="pl" data-pos="Trainer" href="https://www.fupa.net/player/dominik-mueller-wintersig-237915"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/dominik-mueller-wintersig-237915.jpg" width="480" height="600" alt="Dominik Mueller Wintersig" loading="lazy"></div><div class="cap"><b>Dominik Mueller Wintersig</b><span>Trainerteam</span></div></a><a class="pl" data-pos="Trainer" href="https://www.fupa.net/player/nv-jan-mayer-975903"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/nv-jan-mayer-975903.jpg" width="480" height="600" alt="Jan Mayer" loading="lazy"></div><div class="cap"><b>Jan Mayer</b><span>Trainerteam</span></div></a><a class="pl" data-pos="Trainer" href="https://www.fupa.net/player/leon-lorig-1958174"><span class="stripe"></span><div class="ph"><img src="bilder/web/kader/leon-lorig-1958174.jpg" width="480" height="600" alt="Leon Lorig" loading="lazy"></div><div class="cap"><b>Leon Lorig</b><span>Trainerteam</span></div></a></div></div>
+    </div>
+    <p class="note-small rv">Porträts und Kader von FuPa, Stand Saison 2026/27. Klick auf einen Spieler öffnet das Profil.</p>
+  </div>
+</section>
+
+<section class="sec ig" id="instagram">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2"><span class="mask"><i>Frisch</i></span> <span class="mask"><i>von</i></span> <span class="mask"><i class="em">Instagram.</i></span></h2>
+      <div style="display:grid;gap:10px;justify-items:end"><span class="sync rv"><i></i>Automatisch synchronisiert, zuletzt vor 12 Minuten</span><a class="more rv" href="https://www.instagram.com/djkstmatthias_trier/">@djkstmatthias_trier folgen <span>→</span></a></div>
+    </div>
+  </div>
+  <div class="lane rv">
+    <div class="track">
+      <a class="post" href="https://www.instagram.com/djkstmatthias_trier/p/DdUm6AaxmTL/"><div class="pic"><img src="bilder/web/ig-2026-09-15.jpg" width="537" height="640" alt="Spieltag 6, alle Ergebnisse" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></div><div class="txt"><time>15. September</time>Spieltag 6, alle Ergebnisse: Erste 1:3 gegen Wittlich, Zweite 2:2 gegen Fisch.</div></a>
+      <a class="post" href="https://www.instagram.com/djkstmatthias_trier/p/DdNAE5DEQ6e/"><div class="pic"><img src="bilder/web/ig-2026-09-12.jpg" width="512" height="640" alt="Spieltagsgrafik Bezirksliga West" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></div><div class="txt"><time>12. September</time>Samstag, 15:30 Uhr in Feyen. Bezirksliga West, Spieltag 6.</div></a>
+      <a class="post" href="https://www.instagram.com/djkstmatthias_trier/p/DdB-R6ZoJ3I/"><div class="pic"><img src="bilder/web/ig-2026-09-08.jpg" width="537" height="640" alt="Spieltag 5, alle Ergebnisse" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></div><div class="txt"><time>8. September</time>Spieltag 5, alle Ergebnisse auf einen Blick.</div></a>
+      <a class="post" href="https://www.instagram.com/djkstmatthias_trier/p/Dc1kFQnR9VJ/"><div class="pic"><img src="bilder/web/ig-2026-09-03.jpg" width="512" height="640" alt="Spieltagsgrafik Bezirksliga West" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></div><div class="txt"><time>3. September</time>Auswärts in Salmrohr. Bezirksliga West, Spieltag 5.</div></a>
+      <a class="post" href="https://www.instagram.com/djkstmatthias_trier/p/DctU7j8oSwA/"><div class="pic"><img src="bilder/web/ig-2026-08-31.jpg" width="536" height="640" alt="Spieltag 4, alle Ergebnisse" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></div><div class="txt"><time>31. August</time>Spieltag 4: dreimal 1:1. Erste, Zweite und Dritte teilen die Punkte.</div></a>
+      <a class="post" href="https://www.instagram.com/djkstmatthias_trier/p/DcoulK4DMXn/"><div class="pic"><img src="bilder/web/ig-2026-08-29.jpg" width="512" height="640" alt="Spieltagsgrafik mit Spielszene" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></div><div class="txt"><time>29. August</time>Heimspiel gegen Trier-Irsch. Samstag, 15:30 Uhr in Feyen.</div></a>
+      <a class="post" href="https://www.instagram.com/djkstmatthias_trier/p/Dcd4MeNIxzR/"><div class="pic"><img src="bilder/web/ig-2026-08-25.jpg" width="537" height="640" alt="Spieltag 3, alle Ergebnisse" loading="lazy"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></div><div class="txt"><time>25. August</time>Spieltag 3: 2:2 gegen Saartal, Zweite und Dritte gewinnen gegen Kürenz.</div></a>
+    </div>
+  </div>
+  <div class="wrap"><p class="rv note-small" style="margin-top:8px">Ein Hintergrunddienst prüft das Instagram-Konto des Vereins regelmäßig. Neue Beiträge erscheinen automatisch hier und vollständig unter „Aktuelles“.</p></div>
+</section>
+
+<section class="sec verein" id="verein">
+  <div class="wrap">
+    <div class="grid">
+      <div class="sticky">
+        <h2 class="h2"><span class="mask"><i>Seit</i></span> <span class="mask"><i>1924</i></span> <span class="mask"><i>im</i></span><br><span class="mask"><i class="em">Trierer</i></span> <span class="mask"><i class="em">Süden.</i></span></h2>
+        <p class="lead rv">Die DJK St. Matthias ist in Feyen zu Hause. Was 1924 begann, ist heute ein Verein mit zwei Abteilungen, eigenem Sportgelände und eigenem Vereinsheim. Bei uns spielen Kinder, die zum ersten Mal gegen einen Ball treten, und Herren, die seit zwanzig Jahren dasselbe Trikot tragen.</p>
+        <div class="cta rv"><a class="btn btn-navy" href="#">Unser Vereinsheim</a><a class="btn btn-navy" href="#vorstand" style="background:var(--navy-ink)">Der Vorstand</a></div>
+        <div class="stage rv" data-parallax><img src="bilder/web/anlage-oben.jpg" width="732" height="441" alt="Die Bezirkssportanlage Trier-Feyen von oben" loading="lazy"></div>
+      </div>
+      <div class="tl" data-timeline>
+        <div class="fill"></div>
+        <div class="ms"><div class="y">1924</div><h3>Gründung im Trierer Süden</h3><p>Als DJK-Verein gegründet, mit Fußball als erster Abteilung. Der Name St. Matthias ist bis heute geblieben.</p><img class="ms-img" src="bilder/web/gruendervaeter.jpg" width="1200" height="900" alt="Die Gründerväter des Vereins" loading="lazy"></div>
+        <div class="ms"><div class="y">Feyen</div><h3>Eigenes Sportgelände und Vereinsheim</h3><p>Kunstrasen, Vereinsheim und Platz für Feste. Das Gelände an der Clara-Viebig-Straße ist das Zuhause aller Abteilungen.</p><img class="ms-img" src="bilder/web/vereinsheim-innen.jpg" width="1200" height="900" alt="Die Theke im Vereinsheim" loading="lazy"></div>
+        <div class="ms"><div class="y">Handball</div><h3>Zweite Abteilung, eigener Spielbetrieb</h3><p>Die Mattheiser Handballer mit Damen, Herren und Jugend, heute mit eigener Seite und eigener Halle.</p><img class="ms-img" src="bilder/web/halle.jpg" width="1024" height="768" alt="Die neue Halle in Feyen" loading="lazy"></div>
+        <div class="ms"><div class="y">Jugend</div><h3>Über zwanzig Mannschaften</h3><p>Von der Ballschule bis zur A-Jugend, Jungen und Mädchen. Die Jugend ist der größte Teil des Vereins.</p></div>
+        <div class="ms"><div class="y">2026</div><h3>Meister und Aufstieg in die Bezirksliga</h3><p>Am 17. Mai 2026 wird die Erste mit dem Sieg gegen Föhren Meister und spielt seit dieser Saison in der Bezirksliga West.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="vorstand" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head stack">
+      <h2 class="h2"><span class="mask"><i>Acht</i></span> <span class="mask"><i>Ehrenamtliche,</i></span><br><span class="mask"><i class="em">die</i></span> <span class="mask"><i class="em">den</i></span> <span class="mask"><i class="em">Laden</i></span> <span class="mask"><i class="em">zusammenhalten.</i></span></h2>
+      <p class="lead rv">Geschäftsführender Vorstand der DJK St. Matthias Trier, alle ehrenamtlich.</p>
+    </div>
+    <div class="board-grid stagger"><div class="person"><img class="av" src="bilder/web/kader/marius-weidert-914833.jpg" width="480" height="600" alt="" loading="lazy"><div><b>Marius Weidert</b><span>1. Vorsitzender</span></div></div><div class="person"><div class="av">TM</div><div><b>Thomas Martin</b><span>2. Vorsitzender</span></div></div><div class="person"><div class="av">AS</div><div><b>Andreas Schirmer</b><span>Kassenwart</span></div></div><div class="person"><div class="av">JN</div><div><b>Jan Näckel</b><span>Schriftführer</span></div></div><div class="person"><div class="av">SA</div><div><b>Steven Alten</b><span>Beisitzer</span></div></div><div class="person"><img class="av" src="bilder/web/kader/yannic-heider-753286.jpg" width="480" height="600" alt="" loading="lazy"><div><b>Yannic Heider</b><span>Beisitzer</span></div></div><div class="person"><img class="av" src="bilder/web/kader/marc-pasucha-232954.jpg" width="480" height="600" alt="" loading="lazy"><div><b>Marc Pasucha</b><span>Abteilungsleiter Fußball</span></div></div><div class="person"><img class="av" src="bilder/web/vorstand/guido-hennecken.jpg" width="429" height="286" alt="" loading="lazy"><div><b>Guido Hennecken</b><span>Abteilungsleiter Handball</span></div></div></div>
+  </div>
+</section>
+
+<section class="sponsors" id="sponsoring">
+  <div class="wrap">
+    <div class="sec-head stack">
+      <h2 class="h2"><span class="mask"><i>Diese</i></span> <span class="mask"><i>Betriebe</i></span><br><span class="mask"><i class="em">tragen</i></span> <span class="mask"><i class="em">uns.</i></span></h2>
+      <p class="lead rv">Ohne die Unternehmen aus Trier und der Region gäbe es keine Trikots, keine Ferienfreizeit und keine Busfahrt zum Auswärtsspiel. Dafür ein großes Danke.</p>
+    </div>
+    <div class="logos stagger"><a class="logo" href="#"><img src="bilder/web/sponsoren/swt.jpg" alt="SWT Stadtwerke Trier" loading="lazy"></a><a class="logo" href="#"><img src="bilder/web/sponsoren/sparkasse.jpg" alt="Sparkasse Trier" loading="lazy"></a><a class="logo" href="#"><img src="bilder/web/sponsoren/geoplan.jpg" alt="Geoplan" loading="lazy"></a><a class="logo" href="#"><img src="bilder/web/sponsoren/blang-lauterbach.jpg" alt="Blang Lauterbach" loading="lazy"></a><a class="logo" href="#"><img src="bilder/web/sponsoren/buschmann.jpg" alt="Buschmann Werbung" loading="lazy"></a><a class="logo" href="#"><img src="bilder/web/sponsoren/bis-in-die-spitzen.jpg" alt="Bis in die Spitzen" loading="lazy"></a><a class="logo" href="#"><img src="bilder/web/sponsoren/gilbers-baasch.jpg" alt="Gilbers & Baasch" loading="lazy"></a><a class="logo" href="#"><img src="bilder/web/sponsoren/schreinerei-adams.jpg" alt="Schreinerei Adams" loading="lazy"></a></div>
+    <div class="cta rv"><p class="lead">Sie möchten den Verein unterstützen? Von der Bandenwerbung bis zum Trikotsatz, wir finden etwas Passendes.</p><a class="btn btn-red" href="#kontakt">Sponsor werden</a></div>
+  </div>
+</section>
+
+<section class="sec kontakt" id="kontakt">
+  <div class="bgimg" aria-hidden="true"><img src="bilder/web/vereinsheim-wappen.jpg" width="1400" height="1050" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <div>
+      <h2 class="h2"><span class="mask"><i>Komm</i></span> <span class="mask"><i class="em">vorbei.</i></span></h2>
+      <p class="lead rv">Am einfachsten lernst du uns auf dem Platz kennen. Sag vorher kurz Bescheid, dann steht jemand bereit und zeigt dir alles.</p>
+      <div class="ways stagger">
+        <a class="way" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>Vorbeikommen</b><span>Kunstrasenplatz Feyen, Clara-Viebig-Straße, 54294 Trier. Am besten zu den Trainingszeiten.</span></span></a>
+        <a class="way" href="tel:+4915151006804"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg><span><b>Anrufen</b><span>0151 51006804</span></span></a>
+        <a class="way" href="mailto:post@djkmatthias.de"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><b>Schreiben</b><span>post@djkmatthias.de</span></span></a>
+      </div>
+    </div>
+    <form class="formbox rv" onsubmit="return false">
+      <h3>Anfrage senden</h3>
+      <div class="fld"><label for="anliegen">Anliegen</label><select id="anliegen"><option>Mitglied werden</option><option>Probetraining</option><option>Sponsoring</option><option>Sonstiges</option></select></div>
+      <div class="row2"><div class="fld"><label for="name">Name *</label><input id="name" type="text" autocomplete="name"></div><div class="fld"><label for="email">E-Mail *</label><input id="email" type="email" autocomplete="email"></div></div>
+      <div class="fld"><label for="tel">Telefon</label><input id="tel" type="tel" autocomplete="tel"></div>
+      <div class="fld"><label for="msg">Nachricht *</label><textarea id="msg"></textarea></div>
+      <label class="consent"><input id="consent" type="checkbox"> Ich habe die Datenschutzerklärung gelesen und stimme der Verarbeitung meiner Daten zu.</label>
+      <button class="btn btn-red" type="submit">Anfrage senden <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="hint">In der fertigen Version landet das Formular direkt im Postfach des Vereins.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><h4>DJK St. Matthias Trier e.V.</h4><p>Einsteinstr. 9, 54294 Trier<br>post@djkmatthias.de</p></div>
+      <div><h4>Verein</h4><ul><li><a href="#vorstand">Der Vorstand</a></li><li><a href="#">Die Sportstätte</a></li><li><a href="#">Das Vereinsheim</a></li><li><a href="#">Vereinsgeschichte</a></li><li><a href="#">Förderverein</a></li></ul></div>
+      <div><h4>Sport</h4><ul><li><a href="#mannschaften">Fußball</a></li><li><a href="https://mattheiser-handball.de">Handball</a></li><li><a href="#">Schiedsrichter</a></li><li><a href="#">Ferienfreizeit</a></li><li><a href="#">Kinder- und Jugendschutz</a></li></ul></div>
+      <div><h4>Service</h4><ul><li><a href="#kontakt">Mitglied werden</a></li><li><a href="#">Formulare</a></li><li><a href="#">Vereinskollektion</a></li><li><a href="#sponsoring">Sponsoring</a></li><li><a href="#kontakt">Kontakt</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 DJK St. Matthias Trier e.V. Fotos: FuPa, Instagram @djkstmatthias_trier, Veo.</span><span><a href="#">Impressum</a> · <a href="#">Datenschutz</a></span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO='IntersectionObserver' in window;
+
+  var prog=document.getElementById('progress'),top=document.getElementById('top');
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    top.classList.toggle('scrolled',window.scrollY>10);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var burger=document.getElementById('burger'),mobile=document.getElementById('mobile');
+  burger.addEventListener('click',function(){
+    var open=mobile.classList.toggle('open');burger.setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
+  });
+  mobile.addEventListener('click',function(e){if(e.target.tagName==='A'){mobile.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow='';}});
+
+  /* Countdown zum Anstoß (Beispieltermin) */
+  var kick=new Date('2026-09-19T15:30:00+02:00').getTime(),cd=document.getElementById('cd');
+  var cdb=cd.querySelectorAll('b');
+  function tick(){
+    var d=Math.max(0,kick-Date.now()),s=Math.floor(d/1000);
+    var v=[Math.floor(s/86400),Math.floor(s%86400/3600),Math.floor(s%3600/60),s%60];
+    v.forEach(function(n,i){cdb[i].textContent=i?String(n).padStart(2,'0'):n;});
+  }
+  tick();setInterval(tick,1000);
+
+  /* Hero-Video: bei reduzierter Bewegung steht das Standbild */
+  var hv=document.getElementById('herovideo');
+  if(hv&&reduce){hv.removeAttribute('autoplay');hv.pause();}
+
+  /* Highlight-Clip */
+  var hl=document.getElementById('hlvideo');
+  if(hl){var v=hl.querySelector('video'),p=hl.querySelector('.play');
+    p.addEventListener('click',function(){hl.classList.add('playing');v.setAttribute('controls','');v.play();});
+    v.addEventListener('ended',function(){hl.classList.remove('playing');});
+    v.addEventListener('pause',function(){if(v.currentTime<v.duration)hl.classList.remove('playing');});
+    v.addEventListener('play',function(){hl.classList.add('playing');});
+  }
+
+  /* Kader-Filter */
+  document.querySelectorAll('.kader-block').forEach(function(blk){
+    var kf=blk.querySelectorAll('.kf'),pls=blk.querySelectorAll('.pl'),lane=blk.querySelector('.kader');
+    kf.forEach(function(b){b.addEventListener('click',function(){
+      kf.forEach(function(x){x.classList.toggle('on',x===b);});var f=b.getAttribute('data-f');
+      pls.forEach(function(c){c.classList.toggle('hide',f!=='alle'&&c.getAttribute('data-pos')!==f);});
+      lane.scrollTo({left:0,behavior:'smooth'});
+    });});
+  });
+
+  if(!hasIO||reduce)return;
+  root.classList.add('js');
+
+  var targets=[].slice.call(document.querySelectorAll('.rv,.h2,[data-board],.stagger'));
+  function show(el){
+    if(el.classList.contains('stagger')){
+      var isK=el.classList.contains('kader');
+      var kids=isK?[].slice.call(el.querySelectorAll('.pl')):[].slice.call(el.children);
+      if(isK)el.querySelector('.row').classList.add('in');
+      kids.forEach(function(c,i){setTimeout(function(){c.classList.add('in');},Math.min(i,12)*70);});
+    }
+    el.classList.add('in');
+  }
+  targets.forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight*.92)show(el);});
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target);}});
+  },{rootMargin:'0px 0px -10% 0px',threshold:.08});
+  targets.forEach(function(el){if(!el.classList.contains('in'))io.observe(el);});
+
+  /* Timeline füllt sich mit dem Scroll, Bühne mit Parallax */
+  var tl=document.querySelector('[data-timeline]'),fill=tl.querySelector('.fill'),ms=tl.querySelectorAll('.ms');
+  var stage=document.querySelector('[data-parallax] img');
+  function scrub(){
+    var r=tl.getBoundingClientRect(),vh=window.innerHeight;
+    var p=Math.min(1,Math.max(0,(vh*.6-r.top)/r.height));
+    fill.style.height=(p*100)+'%';
+    ms.forEach(function(m){var mr=m.getBoundingClientRect();m.classList.toggle('on',mr.top<vh*.62);});
+    if(stage){var sr=stage.parentNode.getBoundingClientRect();if(sr.bottom>0&&sr.top<vh){var q=(sr.top+sr.height/2-vh/2)/(vh/2);stage.style.transform='translateY('+(q*-7-7).toFixed(1)+'%)';}}
+  }
+  var ticking=false;
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){scrub();ticking=false;});ticking=true;}},{passive:true});
+  scrub();
+})();
+</script>
+</body>
+</html>
